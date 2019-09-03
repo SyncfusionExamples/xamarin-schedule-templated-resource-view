@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TemplatedResourceView.SchedulerPage"
+             xmlns:local="clr-namespace:TemplatedResourceView"
+             xmlns:syncfusion="clr-namespace:Syncfusion.SfSchedule.XForms;assembly=Syncfusion.SfSchedule.XForms">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:ResourceTemplateSelector x:Key="resourceDataTemplateSelector" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <syncfusion:SfSchedule
+                x:Name="schedule"
+                AllowAppointmentDrag="true"
+                ScheduleView="WeekView" 
+                ScheduleResources="{Binding Employees}"
+                SelectedResources="{Binding SelectedEmployees}"
+                DataSource="{Binding Events}"
+                ResourceItemTemplate="{StaticResource resourceDataTemplateSelector}"
+                ShowResourceView="True"
+                VerticalOptions="FillAndExpand"
+                HorizontalOptions="FillAndExpand">
+
+            <syncfusion:SfSchedule.AppointmentMapping>
+                <syncfusion:ScheduleAppointmentMapping
+                        ColorMapping="Color"
+                        EndTimeMapping="To"
+                        IsAllDayMapping="IsAllDay"
+                        StartTimeMapping="From"
+                        SubjectMapping="EventName"
+                        MinHeightMapping="MinimumHeight"
+                        StartTimeZoneMapping="StartTimeZone"
+                        EndTimeZoneMapping="EndTimeZone"
+                        ResourceIdsMapping="Resources"/>
+            </syncfusion:SfSchedule.AppointmentMapping>
+
+            <syncfusion:SfSchedule.ResourceMapping>
+                <syncfusion:ResourceMapping Name="Name"
+                                          Id="Id"
+                                          Color="Color"
+                                          Image="DisplayPicture"/>
+            </syncfusion:SfSchedule.ResourceMapping>
+
+            <syncfusion:SfSchedule.ResourceViewSettings>
+                <syncfusion:ResourceViewSettings SelectionMode ="Multiple"/>
+            </syncfusion:SfSchedule.ResourceViewSettings>
+
+            <syncfusion:SfSchedule.BindingContext>
+                <local:SchedulerViewModel/>
+            </syncfusion:SfSchedule.BindingContext>
+            
+        </syncfusion:SfSchedule>
+    </ContentPage.Content>
+
+    <ContentPage.Behaviors>
+        <local:SchedulerPageBehavior/>
+    </ContentPage.Behaviors>
+    
+</ContentPage>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Button xmlns="http://xamarin.com/schemas/2014/forms"
+        xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+        x:Class="TemplatedResourceView.UnavailableResourceTemplate"
+        Text="{Binding Name, StringFormat= '\{0\}  (unavailable)'}}" 
+        InputTransparent="true"
+        TextColor="White"
+        BackgroundColor="{Binding Color}"
+        FontSize="10"
+        BorderColor="Black"
+        BorderWidth="2">
+</Button>
